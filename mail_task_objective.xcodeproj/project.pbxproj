@@ -15,6 +15,16 @@
 		0D09C0402141687A00911810 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D09C03F2141687A00911810 /* main.m */; };
 		0D09C04A2141687A00911810 /* mail_task_objectiveTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D09C0492141687A00911810 /* mail_task_objectiveTests.m */; };
 		0D09C0552141687A00911810 /* mail_task_objectiveUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D09C0542141687A00911810 /* mail_task_objectiveUITests.m */; };
+		0D7EFD9E2141B8F200613CCD /* TweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D7EFD9C2141B8F200613CCD /* TweetViewController.m */; };
+		0D7EFDA12141B8F200613CCD /* TweetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D7EFD9D2141B8F200613CCD /* TweetViewController.xib */; };
+		0D7EFDA22141B8F200613CCD /* TweetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D7EFD9D2141B8F200613CCD /* TweetViewController.xib */; };
+		0D7EFDA32141B8F200613CCD /* TweetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D7EFD9D2141B8F200613CCD /* TweetViewController.xib */; };
+		0D7EFDA72141B98100613CCD /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D7EFDA52141B98100613CCD /* SettingsViewController.m */; };
+		0D7EFDA82141B98100613CCD /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D7EFDA52141B98100613CCD /* SettingsViewController.m */; };
+		0D7EFDA92141B98100613CCD /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D7EFDA52141B98100613CCD /* SettingsViewController.m */; };
+		0D7EFDAA2141B98100613CCD /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D7EFDA62141B98100613CCD /* SettingsViewController.xib */; };
+		0D7EFDAB2141B98100613CCD /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D7EFDA62141B98100613CCD /* SettingsViewController.xib */; };
+		0D7EFDAC2141B98100613CCD /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D7EFDA62141B98100613CCD /* SettingsViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +60,12 @@
 		0D09C0502141687A00911810 /* mail_task_objectiveUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mail_task_objectiveUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D09C0542141687A00911810 /* mail_task_objectiveUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mail_task_objectiveUITests.m; sourceTree = "<group>"; };
 		0D09C0562141687A00911810 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0D7EFD9B2141B8F200613CCD /* TweetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TweetViewController.h; sourceTree = "<group>"; };
+		0D7EFD9C2141B8F200613CCD /* TweetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TweetViewController.m; sourceTree = "<group>"; };
+		0D7EFD9D2141B8F200613CCD /* TweetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TweetViewController.xib; sourceTree = "<group>"; };
+		0D7EFDA42141B98100613CCD /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		0D7EFDA52141B98100613CCD /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		0D7EFDA62141B98100613CCD /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +116,12 @@
 		0D09C02C2141687600911810 /* mail_task_objective */ = {
 			isa = PBXGroup;
 			children = (
+				0D7EFDA42141B98100613CCD /* SettingsViewController.h */,
+				0D7EFDA52141B98100613CCD /* SettingsViewController.m */,
+				0D7EFDA62141B98100613CCD /* SettingsViewController.xib */,
+				0D7EFD9B2141B8F200613CCD /* TweetViewController.h */,
+				0D7EFD9C2141B8F200613CCD /* TweetViewController.m */,
+				0D7EFD9D2141B8F200613CCD /* TweetViewController.xib */,
 				0D09C02D2141687600911810 /* AppDelegate.h */,
 				0D09C02E2141687600911810 /* AppDelegate.m */,
 				0D09C0332141687600911810 /* Main.storyboard */,
@@ -233,9 +255,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D7EFDA12141B8F200613CCD /* TweetViewController.xib in Resources */,
 				0D09C03D2141687A00911810 /* LaunchScreen.storyboard in Resources */,
 				0D09C03A2141687A00911810 /* Assets.xcassets in Resources */,
 				0D09C0352141687600911810 /* Main.storyboard in Resources */,
+				0D7EFDAA2141B98100613CCD /* SettingsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,6 +267,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D7EFDA22141B8F200613CCD /* TweetViewController.xib in Resources */,
+				0D7EFDAB2141B98100613CCD /* SettingsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,6 +276,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D7EFDA32141B8F200613CCD /* TweetViewController.xib in Resources */,
+				0D7EFDAC2141B98100613CCD /* SettingsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,7 +288,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D7EFD9E2141B8F200613CCD /* TweetViewController.m in Sources */,
 				0D09C02F2141687600911810 /* AppDelegate.m in Sources */,
+				0D7EFDA72141B98100613CCD /* SettingsViewController.m in Sources */,
 				0D09C0402141687A00911810 /* main.m in Sources */,
 				0D09C0382141687600911810 /* mail_task_objective.xcdatamodeld in Sources */,
 			);
@@ -271,6 +301,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D09C04A2141687A00911810 /* mail_task_objectiveTests.m in Sources */,
+				0D7EFDA82141B98100613CCD /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,6 +310,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D09C0552141687A00911810 /* mail_task_objectiveUITests.m in Sources */,
+				0D7EFDA92141B98100613CCD /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

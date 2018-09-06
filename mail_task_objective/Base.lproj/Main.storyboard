@@ -13,26 +13,32 @@
         <!--Настройки-->
         <scene sceneID="D4R-TO-abA">
             <objects>
-                <viewController id="wFY-jC-EO9" sceneMemberID="viewController">
+                <viewController id="wFY-jC-EO9" customClass="SettingsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hGo-D5-54P">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s9H-Sz-jzh">
-                                <rect key="frame" x="163" y="171" width="49" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </switch>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yaS-ke-TVL">
                                 <rect key="frame" x="61" y="105" width="253" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="Показ картинок"/>
                             </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s9H-Sz-jzh">
+                                <rect key="frame" x="164" y="172" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="show_images:" destination="wFY-jC-EO9" eventType="valueChanged" id="fpr-DT-Fwy"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="aHr-vx-BeQ"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Настройки" id="34E-a3-MWU"/>
+                    <connections>
+                        <outlet property="switch_btn" destination="s9H-Sz-jzh" id="hGE-0J-7Lt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DNv-BT-PuT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -41,7 +47,7 @@
         <!--Твитты-->
         <scene sceneID="tTD-js-UK8">
             <objects>
-                <viewController id="gMn-Ng-hgr" sceneMemberID="viewController">
+                <viewController id="gMn-Ng-hgr" customClass="TweetViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fOq-sw-8ZP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
