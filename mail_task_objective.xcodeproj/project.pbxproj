@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0D09C02F2141687600911810 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D09C02E2141687600911810 /* AppDelegate.m */; };
-		0D09C0322141687600911810 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D09C0312141687600911810 /* ViewController.m */; };
 		0D09C0352141687600911810 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D09C0332141687600911810 /* Main.storyboard */; };
 		0D09C0382141687600911810 /* mail_task_objective.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0D09C0362141687600911810 /* mail_task_objective.xcdatamodeld */; };
 		0D09C03A2141687A00911810 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D09C0392141687A00911810 /* Assets.xcassets */; };
@@ -39,8 +38,6 @@
 		0D09C02A2141687600911810 /* mail_task_objective.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mail_task_objective.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D09C02D2141687600911810 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0D09C02E2141687600911810 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		0D09C0302141687600911810 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		0D09C0312141687600911810 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		0D09C0342141687600911810 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0D09C0372141687600911810 /* mail_task_objective.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = mail_task_objective.xcdatamodel; sourceTree = "<group>"; };
 		0D09C0392141687A00911810 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -105,8 +102,6 @@
 			children = (
 				0D09C02D2141687600911810 /* AppDelegate.h */,
 				0D09C02E2141687600911810 /* AppDelegate.m */,
-				0D09C0302141687600911810 /* ViewController.h */,
-				0D09C0312141687600911810 /* ViewController.m */,
 				0D09C0332141687600911810 /* Main.storyboard */,
 				0D09C0392141687A00911810 /* Assets.xcassets */,
 				0D09C03B2141687A00911810 /* LaunchScreen.storyboard */,
@@ -265,7 +260,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0D09C0322141687600911810 /* ViewController.m in Sources */,
 				0D09C02F2141687600911810 /* AppDelegate.m in Sources */,
 				0D09C0402141687A00911810 /* main.m in Sources */,
 				0D09C0382141687600911810 /* mail_task_objective.xcdatamodeld in Sources */,
