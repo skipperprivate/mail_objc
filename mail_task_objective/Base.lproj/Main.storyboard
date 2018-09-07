@@ -92,6 +92,12 @@
                         <viewLayoutGuide key="safeArea" id="5Sb-8L-9WS"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Твитты" id="6ZP-gm-6qx"/>
+                    <connections>
+                        <outlet property="search_btn" destination="8BL-IL-4Iu" id="STc-3v-MLA"/>
+                        <outlet property="table_tweet" destination="WJD-Qe-a0e" id="vXM-pX-DeS"/>
+                        <outlet property="text_field" destination="hsB-Ar-ypm" id="AZa-1w-sg4"/>
+                        <outlet property="time_label" destination="l64-rt-qTP" id="pDu-As-4Sj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w4v-Hv-1H4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
