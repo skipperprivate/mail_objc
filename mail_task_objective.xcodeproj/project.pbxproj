@@ -25,6 +25,14 @@
 		0D7EFDAA2141B98100613CCD /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D7EFDA62141B98100613CCD /* SettingsViewController.xib */; };
 		0D7EFDAB2141B98100613CCD /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D7EFDA62141B98100613CCD /* SettingsViewController.xib */; };
 		0D7EFDAC2141B98100613CCD /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D7EFDA62141B98100613CCD /* SettingsViewController.xib */; };
+		0D7EFDCE214536E700613CCD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D7EFDCD214536E700613CCD /* UIKit.framework */; };
+		0D7EFDD02145370B00613CCD /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D7EFDCF2145370A00613CCD /* libxml2.2.tbd */; };
+		0D7EFDD22145371400613CCD /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D7EFDD12145371400613CCD /* libxml2.tbd */; };
+		0D7EFDD42145371D00613CCD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D7EFDD32145371D00613CCD /* Foundation.framework */; };
+		0D7EFDDB2145394500613CCD /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D7EFDD52145394500613CCD /* XPathQuery.m */; };
+		0D7EFDDC2145394500613CCD /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D7EFDD82145394500613CCD /* TFHpple.m */; };
+		0D7EFDDD2145394500613CCD /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D7EFDD92145394500613CCD /* TFHppleElement.m */; };
+		0D7EFDE021459B6200613CCD /* TweetObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D7EFDDF21459B6200613CCD /* TweetObj.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +74,18 @@
 		0D7EFDA42141B98100613CCD /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		0D7EFDA52141B98100613CCD /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		0D7EFDA62141B98100613CCD /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		0D7EFDCD214536E700613CCD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		0D7EFDCF2145370A00613CCD /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
+		0D7EFDD12145371400613CCD /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
+		0D7EFDD32145371D00613CCD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		0D7EFDD52145394500613CCD /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
+		0D7EFDD62145394500613CCD /* TFHppleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHppleElement.h; sourceTree = "<group>"; };
+		0D7EFDD72145394500613CCD /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
+		0D7EFDD82145394500613CCD /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHpple.m; sourceTree = "<group>"; };
+		0D7EFDD92145394500613CCD /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHppleElement.m; sourceTree = "<group>"; };
+		0D7EFDDA2145394500613CCD /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
+		0D7EFDDE21459B6200613CCD /* TweetObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TweetObj.h; sourceTree = "<group>"; };
+		0D7EFDDF21459B6200613CCD /* TweetObj.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TweetObj.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +93,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D7EFDD42145371D00613CCD /* Foundation.framework in Frameworks */,
+				0D7EFDD22145371400613CCD /* libxml2.tbd in Frameworks */,
+				0D7EFDD02145370B00613CCD /* libxml2.2.tbd in Frameworks */,
+				0D7EFDCE214536E700613CCD /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +124,7 @@
 				0D09C0482141687A00911810 /* mail_task_objectiveTests */,
 				0D09C0532141687A00911810 /* mail_task_objectiveUITests */,
 				0D09C02B2141687600911810 /* Products */,
+				0D7EFDB62145218500613CCD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -116,11 +141,19 @@
 		0D09C02C2141687600911810 /* mail_task_objective */ = {
 			isa = PBXGroup;
 			children = (
+				0D7EFDD72145394500613CCD /* TFHpple.h */,
+				0D7EFDD82145394500613CCD /* TFHpple.m */,
+				0D7EFDD62145394500613CCD /* TFHppleElement.h */,
+				0D7EFDD92145394500613CCD /* TFHppleElement.m */,
+				0D7EFDDA2145394500613CCD /* XPathQuery.h */,
+				0D7EFDD52145394500613CCD /* XPathQuery.m */,
 				0D7EFDA42141B98100613CCD /* SettingsViewController.h */,
 				0D7EFDA52141B98100613CCD /* SettingsViewController.m */,
 				0D7EFDA62141B98100613CCD /* SettingsViewController.xib */,
 				0D7EFD9B2141B8F200613CCD /* TweetViewController.h */,
 				0D7EFD9C2141B8F200613CCD /* TweetViewController.m */,
+				0D7EFDDE21459B6200613CCD /* TweetObj.h */,
+				0D7EFDDF21459B6200613CCD /* TweetObj.m */,
 				0D7EFD9D2141B8F200613CCD /* TweetViewController.xib */,
 				0D09C02D2141687600911810 /* AppDelegate.h */,
 				0D09C02E2141687600911810 /* AppDelegate.m */,
@@ -150,6 +183,17 @@
 				0D09C0562141687A00911810 /* Info.plist */,
 			);
 			path = mail_task_objectiveUITests;
+			sourceTree = "<group>";
+		};
+		0D7EFDB62145218500613CCD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0D7EFDD32145371D00613CCD /* Foundation.framework */,
+				0D7EFDD12145371400613CCD /* libxml2.tbd */,
+				0D7EFDCF2145370A00613CCD /* libxml2.2.tbd */,
+				0D7EFDCD214536E700613CCD /* UIKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,10 +332,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D7EFDDD2145394500613CCD /* TFHppleElement.m in Sources */,
 				0D7EFD9E2141B8F200613CCD /* TweetViewController.m in Sources */,
 				0D09C02F2141687600911810 /* AppDelegate.m in Sources */,
 				0D7EFDA72141B98100613CCD /* SettingsViewController.m in Sources */,
+				0D7EFDDC2145394500613CCD /* TFHpple.m in Sources */,
 				0D09C0402141687A00911810 /* main.m in Sources */,
+				0D7EFDDB2145394500613CCD /* XPathQuery.m in Sources */,
+				0D7EFDE021459B6200613CCD /* TweetObj.m in Sources */,
 				0D09C0382141687600911810 /* mail_task_objective.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -400,10 +448,18 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+					"-lz",
+					"-liconv",
+				);
 				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
@@ -452,9 +508,17 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+					"-lz",
+					"-liconv",
+				);
 				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -463,6 +527,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7WHR3Q4HUY;
 				INFOPLIST_FILE = mail_task_objective/Info.plist;
@@ -470,6 +535,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_BUNDLE_IDENTIFIER = "dacha-app.mail-task-objective";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -480,6 +546,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7WHR3Q4HUY;
 				INFOPLIST_FILE = mail_task_objective/Info.plist;
@@ -487,6 +554,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_BUNDLE_IDENTIFIER = "dacha-app.mail-task-objective";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
