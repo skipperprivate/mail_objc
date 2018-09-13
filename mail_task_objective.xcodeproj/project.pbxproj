@@ -141,19 +141,13 @@
 		0D09C02C2141687600911810 /* mail_task_objective */ = {
 			isa = PBXGroup;
 			children = (
-				0D7EFDD72145394500613CCD /* TFHpple.h */,
-				0D7EFDD82145394500613CCD /* TFHpple.m */,
-				0D7EFDD62145394500613CCD /* TFHppleElement.h */,
-				0D7EFDD92145394500613CCD /* TFHppleElement.m */,
-				0D7EFDDA2145394500613CCD /* XPathQuery.h */,
-				0D7EFDD52145394500613CCD /* XPathQuery.m */,
+				0D7EFDE2214ACB3400613CCD /* Tweet */,
+				0D7EFDE1214ACADE00613CCD /* Parse */,
 				0D7EFDA42141B98100613CCD /* SettingsViewController.h */,
 				0D7EFDA52141B98100613CCD /* SettingsViewController.m */,
 				0D7EFDA62141B98100613CCD /* SettingsViewController.xib */,
 				0D7EFD9B2141B8F200613CCD /* TweetViewController.h */,
 				0D7EFD9C2141B8F200613CCD /* TweetViewController.m */,
-				0D7EFDDE21459B6200613CCD /* TweetObj.h */,
-				0D7EFDDF21459B6200613CCD /* TweetObj.m */,
 				0D7EFD9D2141B8F200613CCD /* TweetViewController.xib */,
 				0D09C02D2141687600911810 /* AppDelegate.h */,
 				0D09C02E2141687600911810 /* AppDelegate.m */,
@@ -194,6 +188,28 @@
 				0D7EFDCD214536E700613CCD /* UIKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0D7EFDE1214ACADE00613CCD /* Parse */ = {
+			isa = PBXGroup;
+			children = (
+				0D7EFDD62145394500613CCD /* TFHppleElement.h */,
+				0D7EFDD92145394500613CCD /* TFHppleElement.m */,
+				0D7EFDD52145394500613CCD /* XPathQuery.m */,
+				0D7EFDDA2145394500613CCD /* XPathQuery.h */,
+				0D7EFDD82145394500613CCD /* TFHpple.m */,
+				0D7EFDD72145394500613CCD /* TFHpple.h */,
+			);
+			path = Parse;
+			sourceTree = "<group>";
+		};
+		0D7EFDE2214ACB3400613CCD /* Tweet */ = {
+			isa = PBXGroup;
+			children = (
+				0D7EFDDE21459B6200613CCD /* TweetObj.h */,
+				0D7EFDDF21459B6200613CCD /* TweetObj.m */,
+			);
+			path = Tweet;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
