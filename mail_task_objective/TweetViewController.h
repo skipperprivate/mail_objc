@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface TweetViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
-
+extern NSMutableArray *task_tweets1;
 @end

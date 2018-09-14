@@ -9,6 +9,9 @@
 #import "TweetViewController.h"
 #import "TFHpple.h"
 #import "TweetObj.h"
+#import "Tweet_obj+CoreDataClass.h"
+#import "AppDelegate.h"
+
 
 @interface TweetViewController ()
 
@@ -17,17 +20,24 @@
 @property (weak, nonatomic) IBOutlet UITextField *text_field;
 @property (weak, nonatomic) IBOutlet UIButton *search_btn;
 @property (nonatomic, strong) NSMutableArray *task_tweets;
+@property (nonatomic, strong) NSString *str22;
+@property (nonatomic, strong) TweetObj *twt;
+//@property(nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+
 @end
 
 
 
 int timeSec = 0;
 NSTimer *timer;
-//NSMutableArray *task_tweets;
+
 
 @implementation TweetViewController
 
-@synthesize task_tweets = _task_tweets;
+//@synthesize task_tweets = _task_tweets;
+//@synthesize managedObjectContext = _managedObjectContext;
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -38,15 +48,68 @@ NSTimer *timer;
     [self StartTimer];
     
     NSString *name = [[NSUserDefaults standardUserDefaults] stringForKey:@"username"];
+    
     _text_field.text = name;
     
-    [self parse:^(NSMutableArray *resultArray) {
+    /*[self parse:^(NSMutableArray *resultArray) {
         //NSLog(@"%@", resultArray);
         self.task_tweets = resultArray;
-    }];
-    
+    }];*/
+    [self download];
 }
 
+
+- (void)download {
+    AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    NSManagedObjectContext *context = delegate.persistentContainer.viewContext;
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Tweet_obj" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    
+    NSError *error = nil;
+    NSArray *result = [context executeFetchRequest:fetchRequest error:&error];
+    NSLog(@"from db");
+    
+   // _twt  = [[TweetObj alloc] init];
+    
+    NSMutableArray *newTweet = [[NSMutableArray alloc] initWithCapacity:0];
+    _task_tweets = [[NSMutableArray alloc] initWithCapacity:0];
+    for(NSManagedObject *subArray in result) {
+        
+        //NSLog(@"Array in myArray: %@",[subArray valueForKey:@"text"]);
+        TweetObj *tweet = [[TweetObj alloc] init];
+        [_task_tweets addObject:tweet];
+        
+        tweet.text = [subArray valueForKey:@"text"];
+        tweet.author = [subArray valueForKey:@"author"];
+        tweet.image_url = [subArray valueForKey:@"url"];
+        //NSLog(@"Array in myArray: %@",tweet);
+        
+        //_twt.text = [subArray valueForKey:@"text"];
+        
+        
+        [context deleteObject:subArray];
+    }
+    
+    //[self.task_tweets = newTweet];
+    
+   // NSString *str;
+    
+   // NSLog(@"Array in myArray: %@",newTweet);
+   /* for (TweetObj *t in newTweet) {
+        TweetObj *tweet = [[TweetObj alloc] init];
+        [self.task_tweets addObject:tweet];
+        str = t.text;
+        self.str22 = t.text;
+    }*/
+    
+    
+    //[self.task_tweets addObjectsFromArray:newTweet];
+    //NSLog(@"Array in myArray: %@",_task_tweets);
+    [self.table_tweet reloadData];
+}
 
 
 - (void)didReceiveMemoryWarning {
@@ -63,26 +126,24 @@ NSTimer *timer;
 
 
 - (void) timerTick:(NSTimer *)timer {
+    
     timeSec++;
-    if (timeSec == 15) {
+    
+    if (timeSec == 22) {
         timeSec = 0;
         
-       // NSString *name = [[NSUserDefaults standardUserDefaults] stringForKey:@"username"];
-       // self.text_field.text = name;
+        //[self show_error];
         
         [self.task_tweets removeAllObjects];
+        //[task_tweets1 removeAllObjects];
         
         [self parse:^(NSMutableArray *resultArray) {
             //NSLog(@"%@", resultArray);
             self.task_tweets = resultArray;
+            //task_tweets1 = resultArray;
             [self.table_tweet reloadData];
         }];
         
-        // });
-        
-        //NSLog(@"%@",self.task_tweets);
-        
-        //[self.table_tweet reloadData];
     }
     
     NSString* timeNow = [NSString stringWithFormat:@"%02d", timeSec];
@@ -92,60 +153,128 @@ NSTimer *timer;
 
 
 
+- (void) show_error {
+    
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                   message:@"Something went wrong"
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {}];
+    
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
+    
+}
+
+
+
 - (void) parse:(void(^)(NSMutableArray * resultArray))completeBlock {
     
     NSString *str = self.text_field.text;
-    //NSString *str = [[NSUserDefaults standardUserDefaults] stringForKey:@"username"];
-   NSLog(@"%@", str);
-    //NSString *str = @"oleg02171931";
+    
     NSMutableString *firsturl_part = [NSMutableString stringWithString:@"https://twitter.com/"];
     [firsturl_part appendString:str];
-    //NSMutableString *url = [firsturl_part stringByAppendingString:@"%@",str];
     
-   // NSURL *tutorialsUrl = [NSURL URLWithString:@"https://twitter.com/oleg02171931"];
+    
+    
     NSURL *tutorialsUrl = [NSURL URLWithString:firsturl_part];
     NSData *tutorialsHtmlData = [NSData dataWithContentsOfURL:tutorialsUrl];
     
-    
-    TFHpple *tutorialsParser = [TFHpple hppleWithHTMLData:tutorialsHtmlData];
-    
-    NSString *tutorialsXpathQueryString = @"//div[@class='js-tweet-text-container']/p";
-    NSArray *tutorialsNodes = [tutorialsParser searchWithXPathQuery:tutorialsXpathQueryString];
-    
-    
-    NSString *XpathQueryString_fornick = @"//div[@class='stream-item-header']/a[@class='account-group js-account-group js-action-profile js-user-profile-link js-nav']/span[@class='username u-dir u-textTruncate']/b";
-    NSArray *Nodes_nick = [tutorialsParser searchWithXPathQuery:XpathQueryString_fornick];
+    NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://twitter.com/realDonaldTrump"]];
 
     
-    NSString *XpathQueryString_forimage = @"//div[@class='stream-item-header']/a[@class='account-group js-account-group js-action-profile js-user-profile-link js-nav']//img[@class='avatar js-action-profile-avatar']";
-    NSArray *Nodes_image = [tutorialsParser searchWithXPathQuery:XpathQueryString_forimage];
+    [urlRequest setHTTPMethod:@"GET"];
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+        
+        if (httpResponse.statusCode == 200) {
+            NSLog(@"%@", data);
+        }
+        else
+        {
+            NSLog(@"Error");
+        }
+    }];
+    
+    [dataTask resume];
     
     
     NSMutableArray *newTweet = [[NSMutableArray alloc] initWithCapacity:0];
     
-    //dispatch_queue_t checkUSers = dispatch_queue_create("CheckUsers", NULL);
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_async(queue, ^{
+    TFHpple *tutorialsParser = [TFHpple hppleWithHTMLData:tutorialsHtmlData];
+    
+    NSString *tutorialsXpathQueryString = @"//div[@class='js-tweet-text-container']/p";
+    NSArray *array_text = [tutorialsParser searchWithXPathQuery:tutorialsXpathQueryString];
+    
+    if ([array_text count]!=0) {
+    
+    
+        NSString *XpathQueryString_fornick = @"//div[@class='stream-item-header']/a[@class='account-group js-account-group js-action-profile js-user-profile-link js-nav']/span[@class='username u-dir u-textTruncate']/b";
+        NSArray *array_nick = [tutorialsParser searchWithXPathQuery:XpathQueryString_fornick];
+
+    
+        NSString *XpathQueryString_forimage = @"//div[@class='stream-item-header']/a[@class='account-group js-account-group js-action-profile js-user-profile-link js-nav']//img[@class='avatar js-action-profile-avatar']";
+        NSArray *array_image = [tutorialsParser searchWithXPathQuery:XpathQueryString_forimage];
+    
+    
+        //NSMutableArray *newTweet = [[NSMutableArray alloc] initWithCapacity:0];
+    
+    
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_async(queue, ^{
         
-        int index = 0;
+            int index = 0;
         
-        for (TFHppleElement *element in tutorialsNodes) {
+            for (TFHppleElement *element in array_text) {
         
-            TweetObj *tweet = [[TweetObj alloc] init];
-            [newTweet addObject:tweet];
+                TweetObj *tweet = [[TweetObj alloc] init];
+                [newTweet addObject:tweet];
         
-            tweet.text = [[element firstChild] content];
+                tweet.text = [[element firstChild] content];
         
-            TFHppleElement *author = [Nodes_nick objectAtIndex:index];
-            tweet.author = [[author firstChild] content];
+                TFHppleElement *author = [array_nick objectAtIndex:index];
+                tweet.author = [[author firstChild] content];
         
-            TFHppleElement *url = [Nodes_image objectAtIndex:index];
-            tweet.image_url = [url objectForKey:@"src"];
+                TFHppleElement *url = [array_image objectAtIndex:index];
+                tweet.image_url = [url objectForKey:@"src"];
+                
+                index++;
+            }
             
-            index++;
-        }
+            for (TweetObj *t in newTweet) {
+                AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+                
+                NSManagedObjectContext *context = delegate.persistentContainer.viewContext;
+                // NSManagedObjectContext *context =[AppDelegate managedObjectContext] ;
+                //NSManagedObjectContext *context = [self managedObjectContext];
+                
+                NSManagedObject *object = [NSEntityDescription insertNewObjectForEntityForName:@"Tweet_obj"
+                                                                        inManagedObjectContext:context];
+                [object setValue:t.text forKey:@"text"];
+                [object setValue:t.author forKey:@"author"];
+                [object setValue:t.image_url forKey:@"url"];
+                //[object setValue:12 forKey:@"numberValue"];
+                NSError *error;
+                if (![context save:&error]) {
+                    NSLog(@"Failed to save - error: %@", [error localizedDescription]);
+                }
+            }
+            
        // if (completeBlock) completeBlock(newTweet);
-    });
+        });
+        
+        
+    } else {
+        
+        [self show_error];
+ 
+    }
+    
     
     if (completeBlock) completeBlock(newTweet);
 }
@@ -155,6 +284,7 @@ NSTimer *timer;
 - (IBAction)search:(UIButton *)sender {
     
     [self.task_tweets removeAllObjects];
+    //[task_tweets1 removeAllObjects];
     timeSec = 0;
     
     NSString *str = self.text_field.text;
@@ -168,11 +298,8 @@ NSTimer *timer;
     [self parse:^(NSMutableArray *resultArray) {
         //NSLog(@"%@", resultArray);
         self.task_tweets = resultArray;
+       // task_tweets1 = resultArray;
     }];
-    
-    // });
-    
-   // NSLog(@"%@",self.task_tweets);
     
     [self.table_tweet reloadData];
     
@@ -182,7 +309,8 @@ NSTimer *timer;
 
 -(NSInteger)tableView:(UITableView *)table_tweet numberOfRowsInSection:(NSInteger)section {
     
-    return [self.task_tweets count];
+    //return [task_tweets1 count];
+   return [self.task_tweets count];
     
 }
 
@@ -199,6 +327,7 @@ NSTimer *timer;
     }
     
     TweetObj *t_tweet = [self.task_tweets objectAtIndex:indexPath.row];
+   // TweetObj *t_tweet = [task_tweets1 objectAtIndex:indexPath.row];
     
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] init];
     [str appendAttributedString:[[NSAttributedString alloc] initWithString:t_tweet.author]];
@@ -208,9 +337,14 @@ NSTimer *timer;
     cell.textLabel.numberOfLines = 0;
     [cell.textLabel setAttributedText:str];
     
-    UIImage *image = [UIImage imageWithData: [NSData dataWithContentsOfURL:
+    
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"showimage"]) {
+        UIImage *image = [UIImage imageWithData: [NSData dataWithContentsOfURL:
                                               [NSURL  URLWithString:t_tweet.image_url]]];
-    [[cell imageView] setImage:image];
+        [[cell imageView] setImage:image];
+    } else {
+        
+    }
     
     return cell;
 }

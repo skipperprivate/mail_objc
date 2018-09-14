@@ -106,6 +106,7 @@ NSDictionary *DictionaryForNode(xmlNodePtr currentNode, NSMutableDictionary *par
     return resultForNode;
 }
 
+
 NSArray *PerformXPathQuery(xmlDocPtr doc, NSString *query)
 {
     xmlXPathContextPtr xpathCtx;
