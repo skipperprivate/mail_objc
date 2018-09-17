@@ -20,8 +20,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *text_field;
 @property (weak, nonatomic) IBOutlet UIButton *search_btn;
 @property (nonatomic, strong) NSMutableArray *task_tweets;
-@property (nonatomic, strong) NSString *str22;
-@property (nonatomic, strong) TweetObj *twt;
 
 
 @end
@@ -47,43 +45,53 @@ NSTimer *timer;
     NSString *name = [[NSUserDefaults standardUserDefaults] stringForKey:@"username"];
     
     _text_field.text = name;
+    _task_tweets = [[NSMutableArray alloc] initWithCapacity:0];
     
     [self download];
+    
 }
 
 
 - (void)download {
-    AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
-    NSManagedObjectContext *context = delegate.persistentContainer.viewContext;
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    //NSMutableArray *newTweetd = [[NSMutableArray alloc] initWithCapacity:0];
     
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Tweet_obj" inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
-    
-    NSError *error = nil;
-    NSArray *result = [context executeFetchRequest:fetchRequest error:&error];
-    NSLog(@"from db");
-    
-   // _twt  = [[TweetObj alloc] init];
-    
-    NSMutableArray *newTweet = [[NSMutableArray alloc] initWithCapacity:0];
-    _task_tweets = [[NSMutableArray alloc] initWithCapacity:0];
-    for(NSManagedObject *subArray in result) {
+    dispatch_queue_t queue1 = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue1, ^{
         
-        //NSLog(@"Array in myArray: %@",[subArray valueForKey:@"text"]);
-        TweetObj *tweet = [[TweetObj alloc] init];
-        [_task_tweets addObject:tweet];
+        AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
         
-        tweet.text = [subArray valueForKey:@"text"];
-        tweet.author = [subArray valueForKey:@"author"];
-        tweet.image_url = [subArray valueForKey:@"url"];
+        NSManagedObjectContext *context = delegate.persistentContainer.viewContext;
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
         
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Tweet_obj" inManagedObjectContext:context];
+        [fetchRequest setEntity:entity];
         
-        [context deleteObject:subArray];
-    }
+        NSError *error = nil;
+        NSArray *result = [context executeFetchRequest:fetchRequest error:&error];
+        //NSLog(@"from db");
+        for(NSManagedObject *subArray in result) {
+            
+            //NSLog(@"Array in myArray: %@",[subArray valueForKey:@"text"]);
+            TweetObj *tweet = [[TweetObj alloc] init];
+            [self.task_tweets addObject:tweet];
+            
+            tweet.text = [subArray valueForKey:@"text"];
+            tweet.author = [subArray valueForKey:@"author"];
+            tweet.image_url = [subArray valueForKey:@"url"];
+            
+            
+            [context deleteObject:subArray];
+        }
+        
+        dispatch_queue_t mainThreadQueue = dispatch_get_main_queue();
+        dispatch_async(mainThreadQueue, ^{
+            
+            [self.table_tweet reloadData]; 
+        });
+        
+    });
     
-    [self.table_tweet reloadData];
 }
 
 
@@ -128,10 +136,10 @@ NSTimer *timer;
 
 
 
-- (void) show_error {
+- (void) show_error:(NSString *) message {
     
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                   message:@"Something went wrong"
+                                                                   message:message
                                                             preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
@@ -156,27 +164,8 @@ NSTimer *timer;
     NSURL *tutorialsUrl = [NSURL URLWithString:firsturl_part];
     NSData *tutorialsHtmlData = [NSData dataWithContentsOfURL:tutorialsUrl];
     
-    NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://twitter.com/realDonaldTrump"]];
+    //NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://twitter.com/realDonaldTrump"]];
 
-    
-    [urlRequest setHTTPMethod:@"GET"];
-    
-    NSURLSession *session = [NSURLSession sharedSession];
-    
-    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        
-        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-        
-        if (httpResponse.statusCode == 200) {
-            NSLog(@"%@", data);
-        }
-        else
-        {
-            NSLog(@"Error");
-        }
-    }];
-    
-    [dataTask resume];
     
     
     NSMutableArray *newTweet = [[NSMutableArray alloc] initWithCapacity:0];
@@ -221,10 +210,14 @@ NSTimer *timer;
                 index++;
             }
             
+            AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            
+            NSManagedObjectContext *context = delegate.persistentContainer.viewContext;
+            
             for (TweetObj *t in newTweet) {
-                AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+               // AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
                 
-                NSManagedObjectContext *context = delegate.persistentContainer.viewContext;
+               // NSManagedObjectContext *context = delegate.persistentContainer.viewContext;
                 
                 
                 NSManagedObject *object = [NSEntityDescription insertNewObjectForEntityForName:@"Tweet_obj"
@@ -244,7 +237,7 @@ NSTimer *timer;
         
     } else {
         
-        [self show_error];
+       // [self show_error];
  
     }
     
@@ -274,7 +267,7 @@ NSTimer *timer;
        // task_tweets1 = resultArray;
     }];
     
-    [self.table_tweet reloadData];
+        [self.table_tweet reloadData];
     
 }
 

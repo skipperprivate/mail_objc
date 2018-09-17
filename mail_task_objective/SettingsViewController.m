@@ -8,6 +8,8 @@
 
 #import "SettingsViewController.h"
 #import "TFHpple.h"
+#import "TweetObj.h"
+
 
 @interface SettingsViewController ()
 
@@ -28,6 +30,7 @@
         NSLog(@"its off!");
         [_switch_btn setOn:NO animated:YES];
     }
+    
 }
 
 
