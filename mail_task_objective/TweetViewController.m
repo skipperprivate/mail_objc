@@ -22,7 +22,7 @@
 @property (nonatomic, strong) NSMutableArray *task_tweets;
 @property (nonatomic, strong) NSString *str22;
 @property (nonatomic, strong) TweetObj *twt;
-//@property(nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+
 
 @end
 
@@ -33,9 +33,6 @@ NSTimer *timer;
 
 
 @implementation TweetViewController
-
-//@synthesize task_tweets = _task_tweets;
-//@synthesize managedObjectContext = _managedObjectContext;
 
 
 
@@ -51,10 +48,6 @@ NSTimer *timer;
     
     _text_field.text = name;
     
-    /*[self parse:^(NSMutableArray *resultArray) {
-        //NSLog(@"%@", resultArray);
-        self.task_tweets = resultArray;
-    }];*/
     [self download];
 }
 
@@ -85,29 +78,11 @@ NSTimer *timer;
         tweet.text = [subArray valueForKey:@"text"];
         tweet.author = [subArray valueForKey:@"author"];
         tweet.image_url = [subArray valueForKey:@"url"];
-        //NSLog(@"Array in myArray: %@",tweet);
-        
-        //_twt.text = [subArray valueForKey:@"text"];
         
         
         [context deleteObject:subArray];
     }
     
-    //[self.task_tweets = newTweet];
-    
-   // NSString *str;
-    
-   // NSLog(@"Array in myArray: %@",newTweet);
-   /* for (TweetObj *t in newTweet) {
-        TweetObj *tweet = [[TweetObj alloc] init];
-        [self.task_tweets addObject:tweet];
-        str = t.text;
-        self.str22 = t.text;
-    }*/
-    
-    
-    //[self.task_tweets addObjectsFromArray:newTweet];
-    //NSLog(@"Array in myArray: %@",_task_tweets);
     [self.table_tweet reloadData];
 }
 
@@ -250,8 +225,7 @@ NSTimer *timer;
                 AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
                 
                 NSManagedObjectContext *context = delegate.persistentContainer.viewContext;
-                // NSManagedObjectContext *context =[AppDelegate managedObjectContext] ;
-                //NSManagedObjectContext *context = [self managedObjectContext];
+                
                 
                 NSManagedObject *object = [NSEntityDescription insertNewObjectForEntityForName:@"Tweet_obj"
                                                                         inManagedObjectContext:context];
@@ -265,7 +239,6 @@ NSTimer *timer;
                 }
             }
             
-       // if (completeBlock) completeBlock(newTweet);
         });
         
         
