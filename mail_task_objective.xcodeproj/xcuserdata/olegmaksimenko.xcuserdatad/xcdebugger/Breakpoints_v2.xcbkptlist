@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "mail_task_objective/SettingsViewController.m"
-            timestampString = "558897017.047947"
+            timestampString = "558992768.8012919"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "34"
@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "mail_task_objective/TweetViewController.m"
-            timestampString = "558897017.048016"
+            timestampString = "558992768.8013819"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "244"
-            endingLineNumber = "244"
-            landmarkName = "-parse:"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
+            landmarkName = "-parse"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
