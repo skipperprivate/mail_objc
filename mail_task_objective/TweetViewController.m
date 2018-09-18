@@ -211,8 +211,12 @@ NSTimer *timer;
         
         dispatch_sync(dispatch_get_main_queue(),^{
             
-            self.task_tweets = newTweet;
-            [self.table_tweet reloadData];
+            if ([newTweet count] !=0 ){
+                self.task_tweets = newTweet;
+                [self.table_tweet reloadData];
+            } else {
+                [self show_error:@"not found"];
+            }
 
         });
     }];
