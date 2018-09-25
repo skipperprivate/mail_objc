@@ -20,7 +20,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *text_field;
 @property (weak, nonatomic) IBOutlet UIButton *search_btn;
 @property (nonatomic, strong) NSMutableArray *task_tweets;
-
+@property (nonatomic, strong) NSArray *result_load;
 
 @end
 
@@ -46,6 +46,7 @@ NSTimer *timer;
     
     _text_field.text = name;
     _task_tweets = [[NSMutableArray alloc] initWithCapacity:0];
+    _result_load = [[NSMutableArray alloc] initWithCapacity:0];
     
     [self download];
     
@@ -54,10 +55,14 @@ NSTimer *timer;
 
 - (void)download {
     
-    dispatch_queue_t queue1 = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_async(queue1, ^{
+    //dispatch_queue_t queue1 = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    //dispatch_async(queue1, ^{
         
         AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        
+        //dispatch_async(dispatch_get_main_queue(), ^{
+          //  self.delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        //});
         
         NSManagedObjectContext *context = delegate.persistentContainer.viewContext;
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -66,9 +71,13 @@ NSTimer *timer;
         [fetchRequest setEntity:entity];
         
         NSError *error = nil;
-        NSArray *result = [context executeFetchRequest:fetchRequest error:&error];
-        
-        for(NSManagedObject *subArray in result) {
+        //NSArray *result = [context executeFetchRequest:fetchRequest error:&error];
+    
+        _result_load = [context executeFetchRequest:fetchRequest error:&error];
+    
+    dispatch_queue_t queue1 = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue1, ^{
+        for(NSManagedObject *subArray in self.result_load) {
             
             TweetObj *tweet = [[TweetObj alloc] init];
             [self.task_tweets addObject:tweet];
@@ -82,6 +91,7 @@ NSTimer *timer;
         }
         
         dispatch_queue_t mainThreadQueue = dispatch_get_main_queue();
+        
         dispatch_async(mainThreadQueue, ^{
             
             [self.table_tweet reloadData]; 
@@ -156,19 +166,19 @@ NSTimer *timer;
     
     NSURLSessionDataTask *datatask = [session dataTaskWithURL:tutorialsUrl completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
-        TFHpple *tutorialsParser = [TFHpple hppleWithHTMLData:data];
+        TFHpple *Parser = [TFHpple hppleWithHTMLData:data];
         
         NSMutableArray *newTweet = [[NSMutableArray alloc] initWithCapacity:0];
         
         NSString *tutorialsXpathQueryString = @"//div[@class='js-tweet-text-container']/p";
-        NSArray *array_text = [tutorialsParser searchWithXPathQuery:tutorialsXpathQueryString];
+        NSArray *array_text = [Parser searchWithXPathQuery:tutorialsXpathQueryString];
         
         NSString *XpathQueryString_fornick = @"//div[@class='stream-item-header']/a[@class='account-group js-account-group js-action-profile js-user-profile-link js-nav']/span[@class='username u-dir u-textTruncate']/b";
-        NSArray *array_nick = [tutorialsParser searchWithXPathQuery:XpathQueryString_fornick];
+        NSArray *array_nick = [Parser searchWithXPathQuery:XpathQueryString_fornick];
         
         
         NSString *XpathQueryString_forimage = @"//div[@class='stream-item-header']/a[@class='account-group js-account-group js-action-profile js-user-profile-link js-nav']//img[@class='avatar js-action-profile-avatar']";
-        NSArray *array_image = [tutorialsParser searchWithXPathQuery:XpathQueryString_forimage];
+        NSArray *array_image = [Parser searchWithXPathQuery:XpathQueryString_forimage];
         
         
             int index = 0;

@@ -32,9 +32,27 @@
     [super tearDown];
 }
 
-- (void)testExample {
-    // Use recording to get started writing UI tests.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
+- (void)testButton {
+    
+    XCUIApplication *app= [[XCUIApplication alloc] init];
+    
+    XCUIElement *btn = app.buttons[@"Search btn"];
+    if (btn.isHittable) {
+        [btn tap];
+    } else {
+        XCUICoordinate *c = [btn coordinateWithNormalizedOffset:CGVectorMake(0.0, 0.0)];
+        [c tap];
+    }
+}
+    
+- (void) testTextField {
+        
+    XCUIApplication *app= [[XCUIApplication alloc] init];
+    
+    XCUIElement *search_text = app.textFields[@"Text field"];
+    [search_text tap];
+    [search_text typeText:@"hello world"];
+    
 }
 
 @end
